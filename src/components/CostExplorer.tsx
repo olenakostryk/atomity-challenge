@@ -6,6 +6,8 @@ import MetricsTable from "./MetricsTable";
 import { useClusters } from "../hooks/useClusters";
 import DetailCard from "./DetailCard";
 import LoadingState from "./LoadingState";
+import { motion } from "framer-motion";
+import OptimizationInsight from "./OptimizationInsight";
 
 
 type Cluster = {
@@ -59,7 +61,23 @@ const [activeCluster, setActiveCluster] =
           optimization opportunities.
         </p>
 
-<div className="grid gap-8 lg:grid-cols-3">
+<motion.div
+  className="grid gap-8 lg:grid-cols-3"
+  initial={{
+    opacity: 0,
+    y: 50,
+  }}
+  whileInView={{
+    opacity: 1,
+    y: 0,
+  }}
+  viewport={{
+    once: true,
+  }}
+  transition={{
+    duration: 0.8,
+  }}
+>
   <div className="lg:col-span-2">
     <Chart
       clusters={clusters}
@@ -73,10 +91,17 @@ const [activeCluster, setActiveCluster] =
     />
   </div>
 
+ <div>
   <DetailCard
     cluster={selectedCluster}
   />
+
+  <OptimizationInsight
+    clusters={clusters}
+    selectedCluster={selectedCluster}
+  />
 </div>
+</motion.div>
 
          
         </div>
