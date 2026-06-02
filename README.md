@@ -21,3 +21,6 @@
 
 npm install
 npm run dev
+
+#live demo
+https://atomity-challenge-six.vercel.app/
